@@ -18,7 +18,7 @@ using namespace std;
 
 int main()
 {
-    ll t,n;
+    ll t,n,k;
     FAST;
     //freopen("a.txt", "r", stdin);
     t = 1;
@@ -26,23 +26,34 @@ int main()
 
     while(t--)
     {
-        cin>>n;
-        int h1 = (n+3)/3;
-        int rest = (n+3)%3;
-        int h2 = h1-1;
-        int h3 = h2-1;
-        if (rest)
+        cin>>n>>k;
+        string ch;
+        cin>>ch;
+
+        vector<int> cum(n,0);
+
+        for (int i=0 ; i<n ; i++)
         {
-            h1++;
-            rest--;
+            cum[i]=ch[i]=='B';
         }
 
-        if (rest)
-            h2++;
+        for (int i=1 ; i<n ; i++)
+            cum[i]+=cum[i-1];
 
-        cout<<h2<<" "<<h1<<" "<<h3;
-        newL;
+        int maxx=-1;
+        int res=0;
+        for (int i=0 ; i<n ; i++)
+        {
+            if (i+k-1<n)
+            {
+                res=cum[i+k-1];
+                if (i>0)
+                    res-=cum[i-1];
+                maxx=max(maxx,res);
+            }
+        }
 
+        cout<<k-maxx;
 
         newL;
     }

@@ -18,7 +18,7 @@ using namespace std;
 
 int main()
 {
-    ll t,n;
+    ll t,n,k;
     FAST;
     //freopen("a.txt", "r", stdin);
     t = 1;
@@ -26,24 +26,40 @@ int main()
 
     while(t--)
     {
-        cin>>n;
-        int h1 = (n+3)/3;
-        int rest = (n+3)%3;
-        int h2 = h1-1;
-        int h3 = h2-1;
-        if (rest)
+        cin>>n>>k;
+        vector<ll> v(n);
+        vector<ll> r(n);
+        for (int i=0 ; i<n ; i++)
+            cin>>v[i];
+
+        ll ans=0;
+
+
+        for (int i=0 ; i<n ; i++)
         {
-            h1++;
-            rest--;
+            ans+=v[i]/k;
+            if (v[i]%k > 0)
+                r.pb(v[i]%k);
         }
 
-        if (rest)
-            h2++;
+        sortt(r);
 
-        cout<<h2<<" "<<h1<<" "<<h3;
-        newL;
+        int i=0;
+        int j=r.size()-1;
+        while(i<j)
+        {
+            if (r[i]+r[j]>=k)
+            {
+                i++;
+                j--;
+                ans++;
+            }
+            else
+                i++;
+        }
 
 
+        cout<<ans;
         newL;
     }
 

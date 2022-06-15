@@ -27,22 +27,24 @@ int main()
     while(t--)
     {
         cin>>n;
-        int h1 = (n+3)/3;
-        int rest = (n+3)%3;
-        int h2 = h1-1;
-        int h3 = h2-1;
-        if (rest)
+        vector<ll> a(n);
+        vector<ll> b(n);
+
+        for (int i=0 ; i<n ; i++)
+            cin>>a[i];
+
+        for (int i=0 ; i<n ; i++)
+            cin>>b[i];
+
+        cout<<b[0]-a[0]<<" ";
+        for (int i=1 ; i<n ; i++)
         {
-            h1++;
-            rest--;
+            if (a[i]>=b[i-1])
+                cout<<b[i]-a[i];
+            else
+                cout<<b[i]-b[i-1];
+            cout<<" ";
         }
-
-        if (rest)
-            h2++;
-
-        cout<<h2<<" "<<h1<<" "<<h3;
-        newL;
-
 
         newL;
     }
